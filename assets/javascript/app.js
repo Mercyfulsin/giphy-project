@@ -5,7 +5,8 @@ let baseUrl = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}
 let queryArray = ["dogs","javascript","coffee","monday","Hunter X Hunter","white chicks","rush hour","James Carter"];
 
 $(document).ready(function(){
-    if(localStorage.getItem("queryArray") == null){
+    console.log();
+    if(localStorage.getItem("queryArray") == null || localStorage.getItem("queryArray") == ""){
         localStorage.setItem("queryArray",queryArray);
     }else{
         queryArray = localStorage.getItem("queryArray").split(',');
@@ -28,6 +29,17 @@ function paintButtons(){
 }
 
 function generateButton(query){
+    let contain = $("<div>");
+    contain.attr("style","display: inline-block; margin: 5px;")
+    let exit = $("<button>");
+    exit.text("X");
+    exit.attr("style","font-weight: bold;");
+    exit.click(function(){
+        var obj = $(this).parent().children()[1];
+        queryArray.splice(queryArray.indexOf($(obj).attr("query")),1);
+        localStorage.setItem("queryArray",queryArray);
+        $(this).parent().remove();
+    });
     let btn = $("<button>");
     btn.text(query);
     btn.attr("query",query);
@@ -38,7 +50,9 @@ function generateButton(query){
         $("#giphy-display").empty();
         grabGiphy(query);
     });
-    $("#button-display").append(btn);
+    contain.append(exit);
+    contain.append(btn);
+    $("#button-display").append(contain);
 }
 
 function grabGiphy(query){
