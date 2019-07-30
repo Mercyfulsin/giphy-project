@@ -5,7 +5,6 @@ let baseUrl = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}
 let queryArray = ["dogs","javascript","coffee","monday","Hunter X Hunter","white chicks","rush hour","James Carter"];
 
 $(document).ready(function(){
-    console.log();
     if(localStorage.getItem("queryArray") == null || localStorage.getItem("queryArray") == ""){
         localStorage.setItem("queryArray",queryArray);
     }else{
