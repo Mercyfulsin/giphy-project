@@ -29,6 +29,7 @@ function generateButton(query){
     btn.click(function(){
         var query = $(this).attr("query");
         query = query.replace(" ", "+");
+        $("#giphy-display").empty();
         grabGiphy(query);
     });
     $("#button-display").append(btn);
