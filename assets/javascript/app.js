@@ -58,7 +58,11 @@ function generateGiphy(obj){
     cardImage.attr("state","still");
     cardImage.click(function(){
         if($(this).attr("state") === "still"){
-            $(this).attr("src",)
+            $(this).attr("src", $(this).attr("gif-url"));
+            $(this).attr("state", "gify");
+        }else{
+            $(this).attr("src", $(this).attr("still-url"));
+            $(this).attr("state","still");
         }
     });
     card.append(cardImage);
