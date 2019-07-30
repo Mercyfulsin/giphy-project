@@ -7,15 +7,15 @@ let queryArray = ["dogs","javascript","coffee","monday","Hunter X Hunter","white
 $(document).ready(function(){
     $("#inputGroup-sizing-default").click(function(e){
         e.preventDefault();
-        query = $("#user-search").val();
-        query = query.replace(" ", "+");
-        baseUrl = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=` + query + `&limit=${limit}`;
-        console.log(baseUrl);
+        queryArray.push($("#user-search").val());
+        paintButtons()
     });
-    initUI();
+    paintButtons();
 });
 
-function initUI(){
+function paintButtons(){
+    $("#button-display").empty();
+    $("#button-display").append($("<H1>Click something!</H1>"));
     queryArray.forEach(function(content){
         generateButton(content);
     });
