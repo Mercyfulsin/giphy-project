@@ -5,9 +5,15 @@ let baseUrl = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}
 let queryArray = ["dogs","javascript","coffee","monday","Hunter X Hunter","white chicks","rush hour","James Carter"];
 
 $(document).ready(function(){
+    if(localStorage.getItem("queryArray") == null){
+        localStorage.setItem("queryArray",queryArray);
+    }else{
+        queryArray = localStorage.getItem("queryArray").split(',');
+    }
     $("#inputGroup-sizing-default").click(function(e){
         e.preventDefault();
         queryArray.push($("#user-search").val());
+        localStorage.setItem("queryArray",queryArray);
         paintButtons()
     });
     paintButtons();
