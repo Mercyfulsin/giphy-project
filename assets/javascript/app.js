@@ -32,6 +32,7 @@ function generateButton(query){
     contain.attr("style","display: inline-block; margin: 5px;")
     let exit = $("<button>");
     exit.text("X");
+    exit.addClass("btn btn-secondary btn-outline-warning");
     exit.attr("style","font-weight: bold;");
     exit.click(function(){
         var obj = $(this).parent().children()[1];
@@ -42,7 +43,7 @@ function generateButton(query){
     let btn = $("<button>");
     btn.text(query);
     btn.attr("query",query);
-    btn.addClass("gif-button");
+    btn.addClass("gif-button btn btn-secondary btn-outline-warning");
     btn.click(function(){
         var query = $(this).attr("query");
         query = query.replace(" ", "+");
@@ -69,9 +70,9 @@ function grabGiphy(query){
 
 function generateGiphy(obj){
     let card = $("<div class='card' style='width: 18rem;'>");
-    let cardBody = $("<div class='card-body'>");
+    let cardBody = $("<div class='card-body row'>");
     let cardImage = $("<img class='card-img-top'>");
-    let cardText = $("<p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>");
+    let cardText = $(`<p class='card-text col-sm-5'>Rating: ${obj.rating}</p>`);
     cardImage.attr("src", obj.images.fixed_height_still.url);
     cardImage.attr("still-url", obj.images.fixed_height_still.url);
     cardImage.attr("gif-url", obj.images.fixed_height.url);
