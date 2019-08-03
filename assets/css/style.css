@@ -1,5 +1,13 @@
 body{
     background-image: url("../images/prism.png");
+    color: white;
+}
+#dropdown{
+    display: inline-block;
+}
+.btn-outline-primary{
+    color:white;
+    border-color: white;
 }
 #button-display{
     border-bottom-style: solid;
@@ -9,5 +17,6 @@ body{
 }
 .card{
     margin: 10px;
+    color: black;
     display: inline-block;
 }

@@ -10,6 +10,15 @@ $(document).ready(function(){
     }else{
         queryArray = localStorage.getItem("queryArray").split(',');
     }
+    var select = $("<select>");
+    for(var i = 1; i < 6; i++){
+        var option = $("<option>");
+        option.attr("value",i+"0");
+        option.text(i+"0");
+        select.append(option);
+    }
+    $("#header").append("<H1>Grab some Giphy's!</H1>");
+    $("#dropdown").append("<span>Amount of Gifs to pull: </span>",select);
     $("#inputGroup-sizing-default").click(function(e){
         e.preventDefault();
         queryArray.push($("#user-search").val());
@@ -21,7 +30,6 @@ $(document).ready(function(){
 
 function paintButtons(){
     $("#button-display").empty();
-    $("#button-display").append($("<H1>Click something!</H1>"));
     queryArray.forEach(function(content){
         generateButton(content);
     });
@@ -32,7 +40,7 @@ function generateButton(query){
     contain.attr("style","display: inline-block; margin: 5px;")
     let exit = $("<button>");
     exit.text("X");
-    exit.addClass("btn btn-secondary btn-outline-warning");
+    exit.addClass("btn btn-secondary btn-outline-primary");
     exit.attr("style","font-weight: bold;");
     exit.click(function(){
         var obj = $(this).parent().children()[1];
@@ -43,7 +51,7 @@ function generateButton(query){
     let btn = $("<button>");
     btn.text(query);
     btn.attr("query",query);
-    btn.addClass("gif-button btn btn-secondary btn-outline-warning");
+    btn.addClass("gif-button btn btn-secondary btn-outline-primary");
     btn.click(function(){
         var query = $(this).attr("query");
         query = query.replace(" ", "+");
@@ -56,6 +64,7 @@ function generateButton(query){
 }
 
 function grabGiphy(query){
+    limit = $("select option:selected").attr("value");
     baseUrl = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=` + query + `&limit=${limit}`;
     console.log(baseUrl);
     $.ajax({
@@ -72,7 +81,7 @@ function generateGiphy(obj){
     let card = $("<div class='card' style='width: 18rem;'>");
     let cardBody = $("<div class='card-body row'>");
     let cardImage = $("<img class='card-img-top'>");
-    let cardText = $(`<p class='card-text col-sm-5'>Rating: ${obj.rating}</p>`);
+    let cardText = $(`<p class='card-text col-sm-12'>Rating: ${obj.rating}<br>Title: ${obj.title}</p>`);
     cardImage.attr("src", obj.images.fixed_height_still.url);
     cardImage.attr("still-url", obj.images.fixed_height_still.url);
     cardImage.attr("gif-url", obj.images.fixed_height.url);
