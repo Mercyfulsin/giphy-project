@@ -1,0 +1,3 @@
+<h1>Giphy Grabber</h1>
+                    <p>Uses the Giphy API and jQuery to dynamically create cards with GIF's generated
+                        around a search query. The search and buttons persist via localStorage</p>
